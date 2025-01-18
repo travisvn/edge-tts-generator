@@ -96,12 +96,13 @@ export async function textToSpeechMp3({
 export type TextToSpeechInput = {
   text: string;
   title: string;
+  options?: TextToSpeechOptions;
 }
 
 export async function batchTextToSpeechMp3(
   inputs: TextToSpeechInput[],
   outputPath: string,
-  options: TextToSpeechOptions = DEFAULT_OPTIONS
+  globalOptions: TextToSpeechOptions = DEFAULT_OPTIONS
 ): Promise<void> {
   // Create output directory if it doesn't exist
   await fs.mkdir(outputPath, { recursive: true });
@@ -113,7 +114,10 @@ export async function batchTextToSpeechMp3(
         text: input.text,
         outputPath,
         fileName: input.title,
-        ...options
+        options: {
+          ...globalOptions,
+          ...input.options || {},
+        }
       });
     } catch (error) {
       console.error(`Failed to process "${input.title}":`, error);
@@ -127,7 +131,8 @@ export async function batchTextToSpeechMp3(
 //   const inputs: TextToSpeechInput[] = [
 //     {
 //       text: "This is the first audio file",
-//       title: "first-audio"
+//       title: "first-audio",
+//       options: { voice: 'en-US-GuyNeural', speed: 1.0 }
 //     },
 //     {
 //       text: "This is the second audio file",

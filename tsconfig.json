@@ -31,6 +31,7 @@
     "node_modules" /* Exclude the 'node_modules' directory. */,
     "dist" /* Exclude the 'dist' directory (output). */,
     "**/*.test.ts" /* Exclude test files. */,
-    "**/*.spec.ts" /* Exclude spec files. */
+    "**/*.spec.ts" /* Exclude spec files. */,
+    "examples"
   ]
 }

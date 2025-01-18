@@ -15,3 +15,9 @@ package-lock.json
 my-audio
 output
 my-text-file.txt
+
+# Examples
+narrationOutput
+
+.gptree_config
+gptree_output.txt
