@@ -23,8 +23,6 @@ program
       let textToSpeak = fileContent;
 
       if (!options.disableFilter) {
-        // Basic text filtering: remove newlines and extra spaces
-        // textToSpeak = textToSpeak.replace(/\r?\n|\r/g, ' ').replace(/\s+/g, ' ').trim();
         textToSpeak = filterMarkdown(textToSpeak)
       }
 

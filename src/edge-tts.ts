@@ -6,12 +6,6 @@ import fetch from 'node-fetch';
 import { randomBytes } from 'crypto';
 import { TextEncoder } from 'util';
 
-// No need for this in Node.js environment
-// Ensure Buffer is globally available for browser-like environments
-// if (typeof globalThis.Buffer === 'undefined') {
-//   globalThis.Buffer = Buffer;
-// }
-
 // Generates a random hex string of the specified length
 function generateRandomHex(length: number): string {
   const randomBuffer = randomBytes(length);
@@ -74,7 +68,6 @@ export class EdgeTTSClient {
   private static VOICE_LANG_REGEX = /\w{2}-\w{2}/;
 
   private enableLogging: boolean;
-  private isBrowser: boolean = false; // Explicitly set to false for Node.js
   private ws: WebSocket | null = null;
   private voice: string | null = null;
   private voiceLocale: string | null = null;

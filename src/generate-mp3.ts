@@ -4,24 +4,37 @@ import * as path from 'path';
 import { EdgeTTSClient, ProsodyOptions, Voice } from './edge-tts';
 import { OUTPUT_FORMAT } from './constants';
 
-export async function textToSpeechMp3(
-  text: string,
-  outputPath: string,
-  voiceShortName: string = 'en-US-JennyNeural', // Default voice
-  prosodyOptions: ProsodyOptions = new ProsodyOptions(),
-  enableLogging: boolean = false
-): Promise<void> {
+export type TextToSpeechProps = {
+  text: string;
+  outputPath: string;
+  voice?: string;
+  speed?: number;
+  enableLogging?: boolean;
+}
+
+export async function textToSpeechMp3({
+  text,
+  outputPath,
+  voice = 'en-GB-RyanNeural',
+  speed = 1.2,
+  enableLogging = false,
+}: TextToSpeechProps): Promise<void> {
+
   const client = new EdgeTTSClient(enableLogging);
 
   try {
+    // Not necessary
     const voices = await client.getVoices();
-    const voice: Voice | undefined = voices.find(v => v.ShortName === voiceShortName);
+    const voiceSelection: Voice | undefined = voices.find(v => v.ShortName === voice);
 
-    if (!voice) {
-      throw new Error(`Voice with short name "${voiceShortName}" not found.`);
+    if (!voiceSelection) {
+      throw new Error(`Voice with short name "${voiceSelection}" not found.`);
     }
 
-    await client.setMetadata(voice.ShortName, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
+    await client.setMetadata(voiceSelection.ShortName, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
+
+    const prosodyOptions = new ProsodyOptions();
+    prosodyOptions.rate = speed;
 
     const stream = client.toStream(text, prosodyOptions);
 

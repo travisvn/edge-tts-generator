@@ -1,25 +1,28 @@
 {
   "name": "edge-tts-generator",
-  "version": "0.1.0",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "version": "0.1.1",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "type": "module",
   "bin": {
-    "tts-generator": "./dist/cli.js"
+    "tts-generator": "./dist/tts-cli.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "text-to-speech",
+    "narration",
+    "edge-tts",
+    "audio",
+    "content"
+  ],
+  "author": "Travis Van Nimwegen <github@travis.engineer> (https://travis.engineer)",
+  "license": "GPL-3.0",
+  "description": "Generate text-to-speech narration for free, leveraging the Read Aloud feature in Microsoft Edge",
   "dependencies": {
     "buffer": "^6.0.3",
     "commander": "^13.0.0",
