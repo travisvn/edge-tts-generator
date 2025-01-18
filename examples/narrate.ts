@@ -1,8 +1,11 @@
 import { textToSpeechMp3, batchTextToSpeechMp3 } from 'edge-tts-generator';
 
+// run with `tsx examples/narrate.ts` or `npx tsx examples/narrate.ts`
+
 async function main() {
   // Example 1: Single narration
   console.log('Generating single narration...');
+
   await textToSpeechMp3({
     text: "Welcome to Edge TTS! This is a simple example of text-to-speech conversion.",
     outputPath: "./narrationOutput",
@@ -14,6 +17,7 @@ async function main() {
 
   // Example 2: Batch narration
   console.log('Generating batch narrations...');
+
   const narrations = [
     {
       text: "This is the first paragraph we'll convert to speech.",
@@ -35,7 +39,15 @@ async function main() {
     }
   ];
 
-  await batchTextToSpeechMp3(narrations);
+  await batchTextToSpeechMp3(
+    narrations,
+    "./narrationOutput",
+    {
+      voice: "en-US-JennyNeural",
+      speed: 1.2,
+    }
+  );
+
   console.log('All narrations completed!');
 }
 
