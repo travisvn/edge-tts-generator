@@ -95,7 +95,10 @@ npx edge-tts-generator examples/narrate.txt -v en-GB-RyanNeural -d ./audio -s 1.
 
 ## Supported Voices 🎙️
 
-Fetch the latest list of supported voices with:
+[Play voice samples and see all available Edge TTS voices](https://tts.travisvn.com/)
+
+<details>
+  <summary>Fetch the list of supported voices</summary>
 
 ```typescript
 import { EdgeTTSClient } from 'edge-tts-generator';
@@ -108,20 +111,7 @@ async function fetchVoices() {
 
 fetchVoices().catch(console.error);
 ```
-
-## Directory Structure 🗂️
-
-```
-├── src/
-│   ├── edge-tts.ts         # Core TTS client
-│   ├── generate-mp3.ts     # Library functions for audio generation
-│   ├── tts-cli.ts          # CLI entry point
-│   ├── utils.ts            # Helper functions
-│   ├── constants.ts        # Enum definitions for output formats, voices, etc.
-│   ├── index.ts            # Library entry point
-├── examples/
-│   ├── narrate.ts          # Example script
-```
+</details>
 
 ## Contributing 🤝
 
