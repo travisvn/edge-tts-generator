@@ -16,7 +16,7 @@ Edge TTS Generator is a Node.js library and CLI tool for generating text-to-spee
 ## Features ✨
 
 - **Free Text-to-Speech**: Generate audio using the Edge Read Aloud API for free.
-- **Customizable Options**: Adjust voice, speed, pitch, volume, and output format.
+- **Customizable Options**: Adjust voice, speed, pitch, volume, etc.
 - **Markdown Support**: Automatically filters and cleans Markdown text for narration.
 - **Batch Processing**: Convert multiple text files into audio in a single operation.
 - **Use Your Way**: Supports both library and CLI usage.
