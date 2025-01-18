@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2022" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', 'ES2021', 'ESNext'. */,
+    "module": "ES2022" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', 'esnext', 'Node16', 'NodeNext'. */,
+    "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
+    "declaration": true /* Generates corresponding '.d.ts' file. */,
+    "outDir": "./dist" /* Redirect output structure to the directory. */,
+    "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
+
+    /* Additional Options (Optional but Recommended) */
+    // "declarationDir": "./types", /* Specify the output directory for generated declaration files. (tsup often manages this, but it's good practice) */
+    "sourceMap": true /* Generates corresponding '.map' file. */,
+    "inlineSources": false /* Include source code in the sourcemaps inside the .map files. */,
+    "isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,
+    "noImplicitAny": false /* Raise error on expressions and declarations with an implied 'any' type. */,
+    "noUnusedLocals": false /* Report errors on unused locals. */,
+    "noUnusedParameters": false /* Report errors on unused parameters. */,
+    "removeComments": false /* Do not emit comments to output. */,
+    "preserveConstEnums": true /* Do not erase const enum declarations in generated code. */,
+    "resolveJsonModule": true /* Allow importing .json files */
+  },
+  "include": [
+    "src/**/*" /* Include all files in the 'src' directory and its subdirectories. */
+  ],
+  "exclude": [
+    "node_modules" /* Exclude the 'node_modules' directory. */,
+    "dist" /* Exclude the 'dist' directory (output). */,
+    "**/*.test.ts" /* Exclude test files. */,
+    "**/*.spec.ts" /* Exclude spec files. */
+  ]
+}

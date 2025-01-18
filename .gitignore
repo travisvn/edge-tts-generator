@@ -1,0 +1,17 @@
+# Build output
+dist
+
+# General files
+node_modules
+package-lock.json
+
+# MacOS-generated files
+.DS_Store
+
+.env
+
+
+# Some random test directories or files
+my-audio
+output
+my-text-file.txt
