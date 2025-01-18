@@ -1,7 +1,15 @@
 # Edge TTS Generator 🗣️
 
+![GitHub stars](https://img.shields.io/github/stars/travisvn/edge-tts-generator?style=social)
+![GitHub forks](https://img.shields.io/github/forks/travisvn/edge-tts-generator?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/travisvn/edge-tts-generator)
+![GitHub language count](https://img.shields.io/github/languages/count/travisvn/edge-tts-generator)
+![GitHub top language](https://img.shields.io/github/languages/top/travisvn/edge-tts-generator)
+![GitHub last commit](https://img.shields.io/github/last-commit/travisvn/edge-tts-generator?color=red)
+![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ftravisvn%2Fedge-tts-generator&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
+[![Discord](https://img.shields.io/badge/Discord-Voice_AI_%26_TTS_Tools-blue?logo=discord&logoColor=white)](https://discord.gg/GkFbBCBqJ6)
 [![npm version](https://badge.fury.io/js/edge-tts-generator.svg)](https://www.npmjs.com/package/edge-tts-generator)  
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 
 Edge TTS Generator is a Node.js library and CLI tool for generating text-to-speech (TTS) audio using Microsoft's Edge Read Aloud API. It's designed to help developers easily create audio files from text, with options for customization like voice selection, playback speed, and audio format.
 
@@ -100,12 +108,6 @@ async function fetchVoices() {
 
 fetchVoices().catch(console.error);
 ```
-
-## Advanced Features 🔍
-
-- **Prosody Customization**: Fine-tune pitch, rate, and volume with the `ProsodyOptions` class.
-- **SSML Support**: Use custom SSML to control every aspect of the TTS output.
-- **Error Handling**: Retries failed requests and manages streaming errors gracefully.
 
 ## Directory Structure 🗂️
 
