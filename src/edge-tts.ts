@@ -108,6 +108,7 @@ export class EdgeTTSClient {
       this.ws!.onerror = (error: any) => reject(`Connection Error: ${error.message}`);
     });
   }
+
   private handleMessage(event: any, metadataBuffer: Metadata) {
     const buffer = Buffer.from(event.data as ArrayBuffer);
     const message = buffer.toString();

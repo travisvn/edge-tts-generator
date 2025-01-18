@@ -1,31 +1,51 @@
-
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import { EdgeTTSClient, ProsodyOptions, Voice } from './edge-tts';
 import { OUTPUT_FORMAT } from './constants';
 
-export type TextToSpeechProps = {
-  text: string;
-  outputPath: string;
+const DEFAULT_OPTIONS: TextToSpeechOptions = {
+  voice: 'en-GB-RyanNeural',
+  speed: 1.2,
+  enableLogging: false,
+}
+
+export type TextToSpeechOptions = {
   voice?: string;
   speed?: number;
   enableLogging?: boolean;
 }
 
+export type TextToSpeechProps = {
+  text: string;
+  outputPath: string;
+  fileName: string;
+  options?: TextToSpeechOptions;
+}
+
 export async function textToSpeechMp3({
   text,
   outputPath,
-  voice = 'en-GB-RyanNeural',
-  speed = 1.2,
-  enableLogging = false,
+  fileName,
+  options = DEFAULT_OPTIONS,
 }: TextToSpeechProps): Promise<void> {
 
-  const client = new EdgeTTSClient(enableLogging);
+  const client = new EdgeTTSClient(options.enableLogging);
 
   try {
+    // Ensure fileName ends with .mp3
+    const finalFileName = fileName.toLowerCase().endsWith('.mp3')
+      ? fileName
+      : `${fileName}.mp3`;
+
+    // Combine directory path and filename
+    const fullOutputPath = path.join(outputPath, finalFileName);
+
+    // Create output directory if it doesn't exist
+    await fs.mkdir(outputPath, { recursive: true });
+
     // Not necessary
     const voices = await client.getVoices();
-    const voiceSelection: Voice | undefined = voices.find(v => v.ShortName === voice);
+    const voiceSelection: Voice | undefined = voices.find(v => v.ShortName === options.voice);
 
     if (!voiceSelection) {
       throw new Error(`Voice with short name "${voiceSelection}" not found.`);
@@ -34,7 +54,7 @@ export async function textToSpeechMp3({
     await client.setMetadata(voiceSelection.ShortName, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
 
     const prosodyOptions = new ProsodyOptions();
-    prosodyOptions.rate = speed;
+    prosodyOptions.rate = options.speed ?? DEFAULT_OPTIONS.speed;
 
     const stream = client.toStream(text, prosodyOptions);
 
@@ -46,11 +66,10 @@ export async function textToSpeechMp3({
     return new Promise<void>((resolve, reject) => {
       stream.on('end', async () => {
         const audioBuffer = Buffer.concat(chunks);
-        const absoluteOutputPath = path.resolve(outputPath); // Ensure absolute path
 
         try {
-          await fs.writeFile(absoluteOutputPath, audioBuffer);
-          console.log(`Audio saved to ${absoluteOutputPath}`);
+          await fs.writeFile(fullOutputPath, audioBuffer);
+          console.log(`Audio saved to ${fullOutputPath}`);
           resolve();
         } catch (err) {
           console.error('Error writing audio to file:', err);
@@ -74,17 +93,62 @@ export async function textToSpeechMp3({
   }
 }
 
-// Example usage:
-// async function runExample() {
-//   const textToSpeak = "This is an example of converting text to speech and saving it as an MP3 file.";
-//   const outputFile = 'output.mp3';
+export type TextToSpeechInput = {
+  text: string;
+  title: string;
+}
 
+export async function batchTextToSpeechMp3(
+  inputs: TextToSpeechInput[],
+  outputPath: string,
+  options: TextToSpeechOptions = DEFAULT_OPTIONS
+): Promise<void> {
+  // Create output directory if it doesn't exist
+  await fs.mkdir(outputPath, { recursive: true });
+
+  // Process all inputs sequentially to avoid overwhelming the TTS service
+  for (const input of inputs) {
+    try {
+      await textToSpeechMp3({
+        text: input.text,
+        outputPath,
+        fileName: input.title,
+        ...options
+      });
+    } catch (error) {
+      console.error(`Failed to process "${input.title}":`, error);
+      // Continue with next item even if one fails
+    }
+  }
+}
+
+// Example usage:
+// async function runBatchExample() {
+//   const inputs: TextToSpeechInput[] = [
+//     {
+//       text: "This is the first audio file",
+//       title: "first-audio"
+//     },
+//     {
+//       text: "This is the second audio file",
+//       title: "second-audio"
+//     }
+//   ];
+//
+//   const outputDir = './output';
+//
 //   try {
-//     await textToSpeechMp3(textToSpeak, outputFile, 'en-GB-RyanNeural', { rate: 'fast' }, true);
-//     console.log('Text-to-speech conversion successful!');
+//     await batchTextToSpeechMp3(
+//       inputs,
+//       outputDir,
+//       { 
+//         voice: 'en-GB-RyanNeural',
+//         speed: 1.2,
+//         enableLogging: true 
+//       }
+//     );
+//     console.log('Batch text-to-speech conversion completed!');
 //   } catch (error) {
-//     console.error('Text-to-speech conversion failed:', error);
+//     console.error('Batch conversion failed:', error);
 //   }
 // }
-
-// runExample();
