@@ -2,17 +2,20 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { EdgeTTSClient, ProsodyOptions, Voice } from './edge-tts';
 import { OUTPUT_FORMAT } from './constants';
+import { filterMarkdown } from './utils';
 
 const DEFAULT_OPTIONS: TextToSpeechOptions = {
   voice: 'en-GB-RyanNeural',
   speed: 1.2,
   enableLogging: false,
+  disableFilter: false,
 }
 
 export type TextToSpeechOptions = {
   voice?: string;
   speed?: number;
   enableLogging?: boolean;
+  disableFilter?: boolean;
 }
 
 export type TextToSpeechProps = {
@@ -55,6 +58,10 @@ export async function textToSpeechMp3({
 
     const prosodyOptions = new ProsodyOptions();
     prosodyOptions.rate = options.speed ?? DEFAULT_OPTIONS.speed;
+
+    if (!options.disableFilter) {
+      text = filterMarkdown(text);
+    }
 
     const stream = client.toStream(text, prosodyOptions);
 
