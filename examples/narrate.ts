@@ -34,7 +34,8 @@ async function main() {
       text: "And finally, a third paragraph with a different voice.",
       title: "paragraph3",
       options: {
-        voice: "en-US-GuyNeural"
+        voice: "en-US-GuyNeural",
+        speed: 1.1,
       }
     }
   ];
@@ -44,7 +45,7 @@ async function main() {
     "./narrationOutput",
     {
       voice: "en-US-JennyNeural",
-      speed: 1.2,
+      speed: 1.0,
     }
   );
 

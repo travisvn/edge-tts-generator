@@ -30,8 +30,8 @@ program
 
       await client.setMetadata(options.voice, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3); // Default output format
 
-      const prosodyOptions = new ProsodyOptions()
-      prosodyOptions.rate = options.speed
+      const prosodyOptions = new ProsodyOptions();
+      prosodyOptions.rate = options.speed;
 
       const stream = client.toStream(textToSpeak, prosodyOptions);
 

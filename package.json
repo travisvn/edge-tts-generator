@@ -1,7 +1,7 @@
 {
   "name": "edge-tts-generator",
   "description": "Generate text-to-speech narration for free, leveraging the Read Aloud feature in Microsoft Edge",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Travis Van Nimwegen <github@travis.engineer> (https://travis.engineer)",
   "license": "GPL-3.0",
   "keywords": [

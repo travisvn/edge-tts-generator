@@ -6,7 +6,7 @@ import { filterMarkdown } from './utils';
 
 const DEFAULT_OPTIONS: TextToSpeechOptions = {
   voice: 'en-GB-RyanNeural',
-  speed: 1.2,
+  speed: 1.1,
   enableLogging: false,
   disableFilter: false,
 }
@@ -47,14 +47,14 @@ export async function textToSpeechMp3({
     await fs.mkdir(outputPath, { recursive: true });
 
     // Not necessary
-    const voices = await client.getVoices();
-    const voiceSelection: Voice | undefined = voices.find(v => v.ShortName === options.voice);
+    // const voices = await client.getVoices();
+    // const voiceSelection: Voice | undefined = voices.find(v => v.ShortName === options.voice);
 
-    if (!voiceSelection) {
-      throw new Error(`Voice with short name "${voiceSelection}" not found.`);
-    }
+    // if (!voiceSelection) {
+    //   throw new Error(`Voice with short name "${voiceSelection}" not found.`);
+    // }
 
-    await client.setMetadata(voiceSelection.ShortName, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
+    await client.setMetadata(options.voice, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
 
     const prosodyOptions = new ProsodyOptions();
     prosodyOptions.rate = options.speed ?? DEFAULT_OPTIONS.speed;
