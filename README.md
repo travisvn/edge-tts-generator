@@ -43,7 +43,7 @@ async function main() {
     fileName: 'hello-world',
     options: {
       voice: 'en-US-JennyNeural',
-      speed: 1.2,
+      speed: 1.0,
     },
   });
 }
@@ -64,7 +64,7 @@ const inputs = [
 async function main() {
   await batchTextToSpeechMp3(inputs, './output', {
     voice: 'en-GB-RyanNeural',
-    speed: 1.0,
+    speed: 1.1,
   });
 }
 
@@ -84,13 +84,13 @@ npx edge-tts-generator <file> [options]
 | `-v, --voice <voice>` | Specify the voice to use (e.g., `en-US-JennyNeural`).                      | `en-US-JennyNeural`        |
 | `-d, --outputFolder`  | Specify the output folder for the audio file.                              | `./output`                 |
 | `-o, --fileName`      | Specify the name of the output file.                                       | `<input_file>-<voice>.mp3` |
-| `-s, --speed <speed>` | Specify the speech rate (e.g., `0.5` for 50% speed, `2.0` for 200% speed). | `1.2`                      |
+| `-s, --speed <speed>` | Specify the speech rate (e.g., `0.5` for 50% speed, `2.0` for 200% speed). | `1.1`                      |
 | `--disableFilter`     | Disable Markdown and text filtering.                                       | `false`                    |
 
 #### Example
 
 ```bash
-npx edge-tts-generator examples/narrate.txt -v en-GB-RyanNeural -d ./audio -s 1.2
+npx edge-tts-generator examples/narrate.txt -v en-GB-RyanNeural -d ./audio -s 1.1
 ```
 
 ## Supported Voices 🎙️
