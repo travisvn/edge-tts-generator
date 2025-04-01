@@ -3,10 +3,8 @@
 ![GitHub stars](https://img.shields.io/github/stars/travisvn/edge-tts-generator?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/travisvn/edge-tts-generator?style=social)
 ![GitHub repo size](https://img.shields.io/github/repo-size/travisvn/edge-tts-generator)
-![GitHub language count](https://img.shields.io/github/languages/count/travisvn/edge-tts-generator)
 ![GitHub top language](https://img.shields.io/github/languages/top/travisvn/edge-tts-generator)
 ![GitHub last commit](https://img.shields.io/github/last-commit/travisvn/edge-tts-generator?color=red)
-![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ftravisvn%2Fedge-tts-generator&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
 [![Discord](https://img.shields.io/badge/Discord-Voice_AI_%26_TTS_Tools-blue?logo=discord&logoColor=white)](https://discord.gg/GkFbBCBqJ6)
 [![npm version](https://badge.fury.io/js/edge-tts-generator.svg)](https://www.npmjs.com/package/edge-tts-generator)  
 
